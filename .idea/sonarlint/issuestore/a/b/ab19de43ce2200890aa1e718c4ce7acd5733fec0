@@ -1,0 +1,53 @@
+
+g	java:S112="FDefine and throw a dedicated exception instead of using a generic one.(‰òœŒûÿÿÿÿ8¶œÛÊù/
+X
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¿Ÿ©Êù/
+b	java:S112S"FDefine and throw a dedicated exception instead of using a generic one.(ÅÕ¡§8Ö÷·Êù/
+[	java:S106²"9Replace this use of System.out or System.err by a logger.(ÈõÜ¾ıÿÿÿÿ8ÌÃÊù/
+?	java:S131˜""Add a default case to this switch.(Ó®òÇ8…‡¼Èù/
+b	java:S112y"FDefine and throw a dedicated exception instead of using a generic one.(º™ÌÎ8œ–ŸËù/
+0
+java:S1220""Move this file to a named package.
+X
+java:S1141»"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8œ–ŸËù/
+X	java:S125+"<This block of commented-out lines of code should be removed.(ÍĞüº8˜À¹Êù/
+g	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(’¥´ûÿÿÿÿ8¸ÆËÊù/
+T
+java:S1611F"2Remove the parentheses around the "cust" parameter(÷öáğÿÿÿÿÿ8ÏîËŸù/
+[	java:S106Ÿ"9Replace this use of System.out or System.err by a logger.(ª£‹íúÿÿÿÿ8¿Ÿ©Êù/
+[	java:S106¾"9Replace this use of System.out or System.err by a logger.(ã©îÿúÿÿÿÿ8œ–ŸËù/
+R
+java:S1143¬"4Remove this break statement from this finally block.(›ûä·8œ–ŸËù/
+V	java:S106Æ"9Replace this use of System.out or System.err by a logger.(§³‡8öÜ±Èù/
+[	java:S106¡"9Replace this use of System.out or System.err by a logger.(ã©îÿúÿÿÿÿ8¿Ÿ©Êù/
+g	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(»¡Ù€øÿÿÿÿ8ğÂÅÊù/
+u
+java:S3776Œ"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(òá–İıÿÿÿÿ8œ–ŸËù/
+R
+java:S1143À"4Remove this break statement from this finally block.(›ûä·8œ–ŸËù/
+g	java:S112p"FDefine and throw a dedicated exception instead of using a generic one.(Üüÿÿÿÿ8û’…Ëù/
+‚
+java:S1488‡"eImmediately return this expression instead of assigning it to the temporary variable "within24Hours".(‰üß8ŸŞ¶Êù/
+^	java:S125ˆ"<This block of commented-out lines of code should be removed.(¯“°˜üÿÿÿÿ8ŸŞ¶Êù/
+[	java:S106´"9Replace this use of System.out or System.err by a logger.(ã©îÿúÿÿÿÿ8ÌÃÊù/
+R
+java:S1143£"4Remove this break statement from this finally block.(›ûä·8ÿôòÊù/
+X
+java:S1141±"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ÌÃÊù/
+g	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(¿¯Ö©şÿÿÿÿ8µÎÊù/
+X
+java:S1141§"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8œ–ŸËù/
+[	java:S106š"9Replace this use of System.out or System.err by a logger.(¿Ñçúÿÿÿÿ8æÒÈù/
+V	java:S106¨"9Replace this use of System.out or System.err by a logger.(‘Á¤¹8œ–ŸËù/
+b	java:S1121"FDefine and throw a dedicated exception instead of using a generic one.(¾¹ñé8é€Êù/
+b	java:S112v"FDefine and throw a dedicated exception instead of using a generic one.(ö”ó¾8œ–ŸËù/
+g	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(ÎÚÀúÿÿÿÿ8¶œÛÊù/
+g	java:S112Y"FDefine and throw a dedicated exception instead of using a generic one.(Ÿˆ¤Ìüÿÿÿÿ8¶œÛÊù/
+g	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(‘ç§ùÿÿÿÿ8¶œÛÊù/
+X	java:S125M"<This block of commented-out lines of code should be removed.(¸ÌØ8ø‰¹Êù/
+[	java:S106ª"9Replace this use of System.out or System.err by a logger.(½şÁàøÿÿÿÿ8œ–ŸËù/
+[	java:S106¼"9Replace this use of System.out or System.err by a logger.(¶ºì®úÿÿÿÿ8œ–ŸËù/
+R
+java:S1143¶"4Remove this break statement from this finally block.(›ûä·8š¡óÊù/
+g	java:S112r"FDefine and throw a dedicated exception instead of using a generic one.(”˜ëöşÿÿÿÿ8œ–ŸËù/
+b	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(¹´•Ú8¶œÛÊù/
