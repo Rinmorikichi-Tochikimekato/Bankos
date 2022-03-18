@@ -1,5 +1,7 @@
+package main.java.com.bankos.Exceptions;
+
 public class UserNotFoundException extends RuntimeException{
-    UserNotFoundException(String exceptionMessage){
+    public UserNotFoundException(String exceptionMessage){
         super(exceptionMessage);
     }
 }

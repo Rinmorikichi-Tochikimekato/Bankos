@@ -1,9 +1,13 @@
+package main.java.com.bankos;
+
+import javax.naming.InitialContext;
+import java.math.BigDecimal;
 import java.time.Instant;
 
 public class Account {
     private String name;
     private int id;
-    private int balance;
+    private BigDecimal balance;
     private static int idCounter = 1000;
 
     private int depositCount;
@@ -44,12 +48,12 @@ public class Account {
         this.withdrawTime = withdrawTime;
     }
 
-    Account(String name){
+    public Account(String name){
         this.name = name;
-        balance = 0;
         this.id = ++idCounter;
         this.withdrawTime = Instant.now();
         this.depositTime = Instant.now();
+        this.balance = new BigDecimal("0");
     }
 
     public void resetWithdrawCount(){
@@ -76,17 +80,17 @@ public class Account {
         this.id = id;
     }
 
-    public int getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
     @Override
     public String toString() {
-        return "Account{" +
+        return "main.java.com.bankos.Account{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
                 ", balance=" + balance +

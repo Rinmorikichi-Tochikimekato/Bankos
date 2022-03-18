@@ -1,5 +1,7 @@
+package main.java.com.bankos.Exceptions;
+
 public class TransferConstraintsException extends RuntimeException{
-    TransferConstraintsException(String exceptionMessage){
+    public TransferConstraintsException(String exceptionMessage){
         super(exceptionMessage);
     }
 }

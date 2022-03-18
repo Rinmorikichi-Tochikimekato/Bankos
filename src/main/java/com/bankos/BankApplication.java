@@ -1,5 +1,12 @@
+package main.java.com.bankos;
+
+import main.java.com.bankos.Exceptions.InsufficientFundsException;
+import main.java.com.bankos.Exceptions.TransferConstraintsException;
+import main.java.com.bankos.Exceptions.UserNotFoundException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -10,7 +17,10 @@ import java.util.Scanner;
 /***
  * Exception handling (Done)
  * ID auto generate (Done)
- *
+ * UTC
+ * COncurrency
+ * Use BigInteger(Done)
+ * Restructure
  */
 
 public class BankApplication {
@@ -36,7 +46,7 @@ public class BankApplication {
         return c.getId();
     }
 
-    public int deposit(int id,int depositAmount) throws RuntimeException{
+    public BigDecimal deposit(int id, BigDecimal depositAmount) throws RuntimeException{
         Account account = this.findCustomer(id);
         //check if the number of transactions has exceeeded 3 transactions
 
@@ -50,16 +60,16 @@ public class BankApplication {
         }
 
 
-        if(depositAmount>50000){
+        if(depositAmount.compareTo(BigDecimal.valueOf(50000)) > 0){
             throw new TransferConstraintsException("Maximum deposit amount is 50000");
-        }else if(depositAmount < 500){
+        }else if(depositAmount.compareTo(BigDecimal.valueOf(500)) < 0){
             throw new TransferConstraintsException("Minimum deposit amount is 500");
         }
 
-        if(account.getBalance() + depositAmount > 100000){
+        if(account.getBalance().add(depositAmount).compareTo(BigDecimal.valueOf(100000)) > 0){
             throw new TransferConstraintsException("Reciever could not accept these funds");
         }else{
-            account.setBalance(account.getBalance() + depositAmount);
+            account.setBalance(account.getBalance().add(depositAmount));
             account.incrementDepositCount();
         }
         return account.getBalance();
@@ -73,7 +83,7 @@ public class BankApplication {
         return optionalCustomer.get();
     }
 
-    public int withdraw(int id,int withdrawAmount) throws RuntimeException{
+    public BigDecimal withdraw(int id, BigDecimal withdrawAmount) throws RuntimeException{
         Account account = this.findCustomer(id);
 
         //check if the number of transactions has exceeeded 3 transactions
@@ -87,45 +97,45 @@ public class BankApplication {
         }
 
 
-        if(withdrawAmount>25000){
+        if(withdrawAmount.compareTo(BigDecimal.valueOf(25000))>0){
             throw new TransferConstraintsException("Maximum Withdrawl limit is 25000");
-        }else if(withdrawAmount < 1000){
+        }else if(withdrawAmount.compareTo(BigDecimal.valueOf(1000))<0){
             throw new TransferConstraintsException("Minimum Withdrawl limit is 1000");
         }
 
-        if(account.getBalance() - withdrawAmount < 0){
+        if(account.getBalance().compareTo(withdrawAmount)< 0){
             throw new InsufficientFundsException("Insufficient Funds");
         }else{
-            account.setBalance(account.getBalance() - withdrawAmount);
+            account.setBalance(account.getBalance().subtract(withdrawAmount));
             account.incrementWithdrawCount();
         }
         return account.getBalance();
     }
 
-    public int getBalance(int id) throws IndexOutOfBoundsException{
+    public BigDecimal getBalance(int id) throws IndexOutOfBoundsException{
         return this.findCustomer(id).getBalance();
     }
 
-    public String transfer(int sender, int reciever, int transferAmount){
+    public String transfer(int sender, int reciever, BigDecimal transferAmount){
         Account senderCust = findCustomer(sender);
         Account recieverCust = findCustomer(reciever);
 
 
-        if(transferAmount < 1000){
-            throw new TransferConstraintsException("Failure : Minimum withdrawl amount is 1000 for Account"+recieverCust.getId());
-        }else if(transferAmount > 25000){
-            throw new TransferConstraintsException("Failure : Maximum withdrawl amount is 25000 for Account"+recieverCust.getId());
+        if(transferAmount.compareTo(BigDecimal.valueOf(1000)) < 0 ){
+            throw new TransferConstraintsException("Failure : Minimum withdrawl amount is 1000 for main.java.com.bankos.Account"+recieverCust.getId());
+        }else if(transferAmount.compareTo(BigDecimal.valueOf(25000)) > 0){
+            throw new TransferConstraintsException("Failure : Maximum withdrawl amount is 25000 for main.java.com.bankos.Account"+recieverCust.getId());
         }
 
-        if( senderCust.getBalance() - transferAmount < 0 ) {
+        if( senderCust.getBalance().compareTo(transferAmount) < 0 ) {
             throw  new TransferConstraintsException("Failure : Insufficient Balance for transfer");
         }
-        else if( recieverCust.getBalance() + transferAmount > 100000){
+        else if( recieverCust.getBalance().add(transferAmount).compareTo(BigDecimal.valueOf(100000)) > 0){
             throw new TransferConstraintsException("Failure : Reciever could not accept these funds");
         }
         else{
-            senderCust.setBalance(senderCust.getBalance() - transferAmount);
-            recieverCust.setBalance(recieverCust.getBalance() + transferAmount);
+            senderCust.setBalance(senderCust.getBalance().subtract(transferAmount));
+            recieverCust.setBalance(recieverCust.getBalance().add(transferAmount));
             return "Success";
         }
 
@@ -142,7 +152,7 @@ public class BankApplication {
     public static void main(String[] args) throws FileNotFoundException {
         BankApplication app = new BankApplication();
 
-        File file = new File("src/resources/input.txt");
+        File file = new File("src/main/resources/input.txt");
         try (Scanner sc = new Scanner(file)) {
 
             while (sc.hasNextLine()) {
@@ -158,7 +168,7 @@ public class BankApplication {
 
                     case "DEPOSIT":
                         try{
-                            System.out.println(app.deposit(Integer.valueOf(inputArray[1]),Integer.valueOf(inputArray[2])));
+                            System.out.println(app.deposit(Integer.valueOf(inputArray[1]),new BigDecimal(inputArray[2])));
                         }catch (RuntimeException re){
                             System.out.println(re.getMessage());
                         }finally {
@@ -177,7 +187,7 @@ public class BankApplication {
 
                     case "WITHDRAW":
                         try{
-                            System.out.println(app.withdraw(Integer.valueOf(inputArray[1]),Integer.valueOf(inputArray[2])));
+                            System.out.println(app.withdraw(Integer.valueOf(inputArray[1]),new BigDecimal(inputArray[2])));
                         }catch (RuntimeException re){
                             System.out.println(re.getMessage());
                         }finally {
@@ -187,7 +197,7 @@ public class BankApplication {
 
                     case "TRANSFER":
                         try{
-                            System.out.println(app.transfer(Integer.valueOf(inputArray[1]),Integer.valueOf(inputArray[2]),Integer.valueOf(inputArray[3])));
+                            System.out.println(app.transfer(Integer.valueOf(inputArray[1]),Integer.valueOf(inputArray[2]),new BigDecimal(inputArray[3])));
                         }catch (RuntimeException re){
                             System.out.println(re.getMessage());
                         }finally {
