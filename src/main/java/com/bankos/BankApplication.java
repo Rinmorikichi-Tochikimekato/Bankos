@@ -1,8 +1,8 @@
-package main.java.com.bankos;
+package com.bankos;
 
-import main.java.com.bankos.Exceptions.InsufficientFundsException;
-import main.java.com.bankos.Exceptions.TransferConstraintsException;
-import main.java.com.bankos.Exceptions.UserNotFoundException;
+import com.bankos.Exceptions.InsufficientFundsException;
+import com.bankos.Exceptions.TransferConstraintsException;
+import com.bankos.Exceptions.UserNotFoundException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -116,9 +116,9 @@ public class BankApplication {
 
 
         if(transferAmount.compareTo(BigDecimal.valueOf(1000)) < 0 ){
-            throw new TransferConstraintsException("Failure : Minimum withdrawal amount is 1000 for main.java.com.bankos.Account"+receiverCust.getId());
+            throw new TransferConstraintsException("Failure : Minimum withdrawal amount is 1000 for Customer: "+receiverCust.getId());
         }else if(transferAmount.compareTo(BigDecimal.valueOf(25000)) > 0){
-            throw new TransferConstraintsException("Failure : Maximum withdrawal amount is 25000 for main.java.com.bankos.Account"+receiverCust.getId());
+            throw new TransferConstraintsException("Failure : Maximum withdrawal amount is 25000 for Customer: "+receiverCust.getId());
         }
 
         if( senderCust.getBalance().compareTo(transferAmount) < 0 ) {
@@ -140,6 +140,14 @@ public class BankApplication {
         Instant twentyFourHoursEarlier = now.minus( 24 , ChronoUnit.HOURS );
         // Is that moment (a) not before 24 hours ago, AND (b) before now (not in the future)?
         return ( ! then.isBefore( twentyFourHoursEarlier ) ) &&  then.isBefore( now );
+    }
+
+    public int findCustomerByName(String name){
+       Optional<Account> account =  this.accounts.stream().filter(accountParse -> accountParse.getName().equalsIgnoreCase(name)).findFirst();
+       if(account.isEmpty()){
+           throw new UserNotFoundException("User Not found");
+       }
+       return account.get().getId();
     }
 
     public static void main(String[] args) {

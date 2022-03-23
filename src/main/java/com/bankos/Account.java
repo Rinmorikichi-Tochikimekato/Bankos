@@ -1,6 +1,5 @@
-package main.java.com.bankos;
+package com.bankos;
 
-import javax.naming.InitialContext;
 import java.math.BigDecimal;
 import java.time.Instant;
 

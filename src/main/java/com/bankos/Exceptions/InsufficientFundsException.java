@@ -1,4 +1,4 @@
-package main.java.com.bankos.Exceptions;
+package com.bankos.Exceptions;
 
 public class InsufficientFundsException extends RuntimeException{
     public InsufficientFundsException(String exceptionMessage){

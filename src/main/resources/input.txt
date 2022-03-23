@@ -1,5 +1,5 @@
-CREATE Majin boo
-CREATE Crazy boo
+CREATE  majin@gmail.com Majin boo
+CREATE  boo123@gmail.com Crazy boo
 DEPOSIT 1001 100
 DEPOSIT 1001 100000
 DEPOSIT 1001 40000
