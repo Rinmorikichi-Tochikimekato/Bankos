@@ -171,7 +171,6 @@ class BankApplicationTests {
         assertEquals(BigDecimal.valueOf(10000),bankApplicationTestObj.deposit(checkAccountIdCustomer1, BigDecimal.valueOf(10000)));
         bankApplicationTestObj.create("Rob Marco");
         int checkAccountIdCustomer2 = bankApplicationTestObj.findCustomerByName("Rob Marco");
-
         TransferConstraintsException transferConstraintsException = assertThrows(TransferConstraintsException.class, () -> bankApplicationTestObj.transfer(checkAccountIdCustomer1,checkAccountIdCustomer2,BigDecimal.valueOf(12000)));
         assertTrue(transferConstraintsException.getMessage().contains("Failure : Insufficient Balance for transfer"));
     }
@@ -181,7 +180,7 @@ class BankApplicationTests {
     void findCustomerByNameTest(){
         bankApplicationTestObj.create("Monkey Luffy");
         int checkAccountId = bankApplicationTestObj.findCustomerByName("Monkey Luffy");
-        assertEquals(bankApplicationTestObj.findCustomer(checkAccountId).getName(),"Monkey Luffy");
+        assertEquals("Monkey Luffy", bankApplicationTestObj.findCustomer(checkAccountId).getName());
     }
 
 }
