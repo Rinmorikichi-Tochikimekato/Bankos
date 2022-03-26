@@ -10,7 +10,9 @@ import org.junit.jupiter.api.TestInstance;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 class BankApplicationTests {
@@ -149,7 +151,7 @@ class BankApplicationTests {
         int checkAccountIdCustomer2 = bankApplicationTestObj.findCustomerByName("Rob Marco");
 
         TransferConstraintsException transferConstraintsException = assertThrows(TransferConstraintsException.class, () -> bankApplicationTestObj.transfer(checkAccountIdCustomer1,checkAccountIdCustomer2,BigDecimal.valueOf(100)));
-        assertTrue(transferConstraintsException.getMessage().contains("Failure : Minimum withdrawal amount is 1000 for Customer: " + checkAccountIdCustomer2));
+        assertTrue(transferConstraintsException.getMessage().contains("Minimum Withdrawal limit is 1000"));
     }
 
     @Test
@@ -161,7 +163,7 @@ class BankApplicationTests {
         int checkAccountIdCustomer2 = bankApplicationTestObj.findCustomerByName("Rob Marco");
 
         TransferConstraintsException transferConstraintsException = assertThrows(TransferConstraintsException.class, () -> bankApplicationTestObj.transfer(checkAccountIdCustomer1,checkAccountIdCustomer2,BigDecimal.valueOf(100000)));
-        assertTrue(transferConstraintsException.getMessage().contains("Failure : Maximum withdrawal amount is 25000 for Customer: " + checkAccountIdCustomer2));
+        assertTrue(transferConstraintsException.getMessage().contains("Maximum Withdrawal limit is 25000"));
     }
 
     @Test
@@ -171,8 +173,8 @@ class BankApplicationTests {
         assertEquals(BigDecimal.valueOf(10000),bankApplicationTestObj.deposit(checkAccountIdCustomer1, BigDecimal.valueOf(10000)));
         bankApplicationTestObj.create("Rob Marco");
         int checkAccountIdCustomer2 = bankApplicationTestObj.findCustomerByName("Rob Marco");
-        TransferConstraintsException transferConstraintsException = assertThrows(TransferConstraintsException.class, () -> bankApplicationTestObj.transfer(checkAccountIdCustomer1,checkAccountIdCustomer2,BigDecimal.valueOf(12000)));
-        assertTrue(transferConstraintsException.getMessage().contains("Failure : Insufficient Balance for transfer"));
+        InsufficientFundsException insufficientFundsException = assertThrows(InsufficientFundsException.class, () -> bankApplicationTestObj.transfer(checkAccountIdCustomer1,checkAccountIdCustomer2,BigDecimal.valueOf(12000)));
+        assertTrue(insufficientFundsException.getMessage().contains("Insufficient Funds"));
     }
 
     //find account by Name test
